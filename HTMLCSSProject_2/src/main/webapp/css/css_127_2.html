@@ -1,0 +1,130 @@
+<!--  
+	상태 선택자
+	=> :checked
+	=> :focus
+	=> : clone
+	-> :disable
+	
+	서블릿 : 목록 / 페이징 / 최신방문 / 상세보기
+	        ------------------------------------
+	        => 맛집, 지니뮤직
+	        => 1. VO, DAO
+	        => 화면UI
+	        => 데이터 처리
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	#a:active, #b:active, #c:active{
+		color: green
+	}
+		#a:hover, #b:hover, #c:hover{
+		color: red;
+	}
+	input:enabled{
+	background: yellow;
+	}
+	input:disabled{
+	background: black;
+	}
+	input:focus{
+		background:white;
+	}
+	input[type="checkbox"]:checked{
+		box-shadow: 0 0 0 3px hotpink;
+	}
+	li:first-child{
+		color: #ff0000;
+	}
+	li:last-child{
+		color: #0000ff;
+	}
+	li:nth-child(2n){
+		color:#00ff00;
+	}
+	table thead tr:first-child{
+		background-color: #ccc;
+	}
+	table tbody tr:nth-child(2n){
+		background: rgb(255,255,230);
+	}
+	table tbody tr td:nth-child(2){
+		background: green;
+	}
+	table tbody tr td:nth-child(3){
+		background: cyan;
+	}
+	table tbody tr td:nth-child(4){
+		background: pink;
+	}
+</style>
+
+</head>
+<body>
+	<h1>:active,:hover</h1>
+	<h3 id="a">HTML CSS</h3>
+	<h3 id="b">HTML CSS3</h3>
+	<h3 id="c">JavaScript</h3>
+	<h1>:focus,:enabled,:disabled,:checked</h1>
+	<input type="text" size= 30 ><br>
+	<input type="text" size= 30 disabled="disabled">
+	<input type="checkbox" vlue="취미" checked="checked"> 취미<br>
+	<h1>:first-chile , :last-child , :nth-child(n)</h1>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>7</li>
+	</ul>
+	<h1>table에서 처리</h1>
+	<table width=500 border=1 bordercolor=black>
+	<thead>
+		<tr>
+			<th>이름</th>
+			<th>국어</th>
+			<th>영어</th>
+			<th>수학</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>홍길동</td>
+			<td>90</td>
+			<td>80</td>
+			<td>70</td>
+		</tr>
+		<tr>
+			<td>심청이</td>
+			<td>80</td>
+			<td>85</td>
+			<td>70</td>
+		</tr>
+		<tr>
+			<td>박문수</td>
+			<td>90</td>
+			<td>80</td>
+			<td>70</td>
+		</tr>
+		<tr>
+			<td>이순신</td>
+			<td>90</td>
+			<td>80</td>
+			<td>70</td>
+		</tr>
+		<tr>
+			<td>강감찬</td>
+			<td>90</td>
+			<td>80</td>
+			<td>70</td>
+		</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>

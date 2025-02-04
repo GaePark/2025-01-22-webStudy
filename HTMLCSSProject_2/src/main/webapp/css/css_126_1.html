@@ -1,0 +1,98 @@
+<!-- 
+	class속성 여러개 사용
+	
+	=> 속성 선택자
+		태그명[속성=값] equals => input
+		태그명[속성^=값] startsWith => ㅁ,
+		태그명[속성$=값] endsWith
+		태그명[속성*=값] contains
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	.poster{
+		width: 150px;
+		height: 180px;
+		transition: 0.2s;
+	}
+	
+	.poster:hover{
+		transform: scale(1.1);
+	}
+	
+	.red {
+		border: 2px solid red;
+	}
+	
+	.blue {
+		border: 2px solid blue;
+	}
+	
+	.green {
+		border: 2px solid green;
+	}
+	input[type="submit"]{
+		border: 1px solid red;
+		border-radius: 10px;
+		background: #ddd;
+	}
+	input[type="submit"]:active {
+	background: #eeeeee;
+	}
+	input[type^="b"]{
+		background: pink;
+	}
+	input[type$="t"]{
+		background: aqua;
+	}
+	
+	input[type*="d"]{
+	background: fuchsia;
+	}
+	a[href^="https"]{
+		color:red;
+	}
+	img[src$="jpg"]
+	{
+	width: 250px;
+	heidht: 300px;
+	border: 1px solid red;
+	}
+	
+	h2,h3,h4{
+		color:red;
+	}
+</style>
+</head>
+<body>
+	<h1>클래스명 여러개 사용(공통적용 / 태그마다 따로 적용)</h1>
+	<img alt="gg" src="image/m1.jpg" class="poster red">
+	<img alt="gg" src="image/m2.jpg" class="poster blue">
+	<img alt="gg" src="image/m3.jpg" class="poster green">
+	<img alt="gg" src="image/m4.jpg" class="poster">
+	<img alt="gg" src="image/m5.jpg" class="poster">
+	<img alt="gg" src="image/m6.jpg" class="poster">
+	<img alt="gg" src="image/m7.jpg" class="poster">
+	<h1>속성 선택자</h1>
+	<input type="text" size="20"><br>
+	<input type="button" value="click"><br>
+	<input type="submit" value="전송"><br>
+	<input type="password" size="20"><br>
+	<h1>속성 선택자2</h1>
+	<a href="http:">CSS 1</a>
+	<a href="https:">CSS 2</a>
+	<a href="http:">CSS 3</a>
+	<h1>속성 선택자3</h1>
+	<img alt="aa" src="image/new.gif">
+	<img alt="aa" src="image/m1.jpg">
+	<img alt="aa" src="image/m2.jpg">
+	<h1>멀티 선택자</h1>
+	<h3>HELLO CSS!!</h3>
+	<h2>HELLO CSS!!</h2>
+	<h4>HELLO CSS!!</h4>
+</body>
+</html>
