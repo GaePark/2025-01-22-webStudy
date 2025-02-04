@@ -1,0 +1,112 @@
+<!-- 
+	1. CSS 적용방법
+	= 외부 : 파일을 제작 => .css
+	= 내부 : 파일 한개에 대한 처리
+	= 인라인 : 태그 한개에 대한 처리
+	
+	2. 선택자 (selector)
+	= css 적용 / 자바스크립트(태그 제어) / Jsoup 크롤링
+										   -------------
+										   web크롤링 => 사이트 데이터 수집
+										   
+	Jquery
+	=>$('선택자').이벤트처리
+	  $('#btn;).click(function(){
+	  	버튼 클릭
+	  })
+	  
+	  doc.select("선택자")
+	  = * : 전체 태그에 적용 => 글꼴 / margin / padding
+	  = id : 중복없는 태그를 적용
+	  = class: 중복이 있는 태그 (여러개 동시에 처리)
+	  = 태그 : => 구분자
+	
+	=> 형제 선택자 (동위 선택자)
+		옆에 있는 태그 => h1+p => 크롤링
+			영화명 실제명
+			출연 ...
+			감독 ...
+		인접한 태그 => h1~p
+		
+		=> :hover=>a,img,tr
+		=> :checked => checkbox,radio
+			--------------------------
+		=> focus => input/button
+		=> 같이 태그가 여러개 구분이 없는 경우
+		   -----------------------------------
+		   목록 : <ul>, <table> , <dl>
+		   => 구조선택자를 이용하다
+		   li:first-child, li:last-child
+		   li:nth-child(수열)
+		      nth-child(2n) => 0 2 4
+		   => ::after, ::before
+		      문자 선택자 : 새글 , 신상품 => 템플릿을 사용시에 나오는 경우가 있다.
+		      		태그선택자 사용자 정의가 없다 (표준화)
+		      				디자인(화면 UI) , 이벤트처리 , 데이터수집
+		   *** Back-End
+		   		자바 / 오라클 / JSP / Spring..., JavaScript
+		   		HTML / CSS => 기본 변경
+		   -------------------------------------------------------------------------
+		   속성의 종류
+		   선택자 {
+		   	속성 : 값
+		   	---- 속성명(사용자정의가 없다)
+		   }
+		   
+		   => 텍스트 속성
+		   		=> 단위
+		   			1. 크기 단위
+		   			  font-size => 16px;
+		   			  %=> 100%, 150%
+		   			  em => 배수단위
+		   			  	0.2em => 16*0.2
+		   			 2. 색상
+		   			 	=시스템 색상 => color:red,gray...
+		   			 	=rgb(255,255,255) => 그림판
+		   			 3. URL
+		   			 	
+		   			  	 
+		   		=> 스타일(글꼴)
+		   		=> 정렬
+		   => 이미지 속성
+		   => 위치 속성 
+		   => border 속성
+		   => 목록 속성
+		   => 박스 모델
+		   => POSITION
+		   => 기타 (레이어, 이동)
+		   => 반응형 웹
+		   => CSS 라이브러리
+				=> BootStrap => 1차 JSP
+				=> Tailwind => 2차 Spring
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+p:nth-child(1){
+	/*font-size: 16px;*/
+	font-size: 100%;
+}
+p:nth-child(2){
+	/*font-size: 24px;*/
+	font-size: 150%;
+}
+p:nth-child(3){
+	/*font-size: 32px;*/
+	font-size: 200%;
+}
+p:nth-child(4){
+}
+
+</style>
+</head>
+<body>
+	<p>HELLO CSS1</p>
+	<p>HELLO CSS2</p>
+	<p>HELLO CSS43</p>
+	<p>HELLO CSS</p>
+</body>
+</html>
