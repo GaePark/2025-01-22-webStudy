@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="table.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+let i=0;
+$(function(){ // window.onload=function(){}
+	$('.dataTr').click(function(){
+		if(i==0)
+		{
+		i=1;
+		$('#content').show("slow");
+		}
+		else
+		{
+		i=0;
+		$('#content').hide("slow");
+		}
+	})
+})
+</script>
+</head>
+<body>
+	<table class="table_content" width=700>
+		<tr>
+			<th>번호</th>
+			<th>제목</th>
+			<th>이름</th>
+			<th>작성일</th>
+			<th>조회수</th>
+		</tr>
+		<tr class="dataTr">
+			<td class="text-center">1</td>
+			<td>박지성 이어 양민혁 해냈다!…결승포 관여 '충격 홈 데뷔전', QPR은 블랙번 2-1 격파</td>
+			<td class="text-center">홍길동</td>
+			<td class="text-center">2024-02-05</td>
+			<td class="text-center">10</td>
+		</tr>
+		<tr id="content" style="display:none">
+			<td colspan="5" height="200" class="text-left" valign="top">
+			<pre>2006년생 공격수 양민혁이 2경기 연속 교체로 출전한 잉글랜드 챔피언십 QPR이 2연패에서 탈출하며 승격을 위한 희망을 이어나가게 됐다. 
+챔피언십이 매 시즌 그런 경향을 드러냈으나 이번 시즌에도 중상위권 혼전 양상이 심하다. QPR 입장에선 소중한 승리가 됐고, 양민혁도 힘을 보탰다.</pre>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

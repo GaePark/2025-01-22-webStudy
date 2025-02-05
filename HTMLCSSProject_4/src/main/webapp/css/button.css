@@ -1,0 +1,32 @@
+@charset "UTF-8";
+span{
+	width: 100ox;
+	height: 100px;
+	display: block;
+}
+
+.danger{
+	border: 1px solid red;
+	backGround: red;
+	border-radius:20px
+}
+.info{
+		border:1px solid aqua;
+		backGround: aqua;
+	border-radius:20px
+}
+.primary{
+		border:1px solid #ff8040;
+		backGround: #ff8040;
+		border-radius:20px
+}
+.success{
+	border:1px solid green;
+		backGround: green;
+	border-radius:20px
+}
+.warning{
+		border:1px solid rgb(155,128,128);
+		backGround: rgb(155,128,128);
+	border-radius:20px
+}

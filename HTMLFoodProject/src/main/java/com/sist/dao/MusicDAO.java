@@ -42,7 +42,68 @@ public class MusicDAO {
 	}
 	
 	//리스트
-	public List<MusicVO> MusicListData(int page, int cno)
+	public List<MusicVO> MusicListData(int page)
+	{
+		List<MusicVO> list = new ArrayList<MusicVO>();
+		
+		try {
+			getConnection();
+			int pageSize=12;
+			int start = (pageSize*page)-(pageSize-1);
+			int end = (pageSize*page);
+			
+			String sql = "SELECT mno, title,poster,num "
+					+ "FROM (SELECT mno,title,poster,rownum AS num "
+					+ "FROM (SELECT mno,title,poster "
+					+ "FROM genie_music "
+					+ "ORDER BY mno)) "
+					+ "WHERE num BETWEEN ? AND ? ";
+			ps= conn.prepareStatement(sql);
+			ps.setInt(1, start);
+			ps.setInt(2, end);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				MusicVO vo = new MusicVO();
+				vo.setMno(rs.getInt(1));
+				vo.setTitle(rs.getString(2));
+				vo.setPoster("https:"+rs.getString(3));
+				list.add(vo);
+			}
+			rs.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally
+		{
+			disConnection();
+		}
+		return list;
+	}
+	//총페이지
+	public int musicTotalPage()
+	{
+		int total=0;
+		try {
+			getConnection();
+			String sql = "SELECT CEIL(COUNT(*)/12.0) FROM genie_music";
+			ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			rs.next(); 
+			total=rs.getInt(1);
+			rs.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally
+		{
+			disConnection();
+		}
+		return total;
+	}
+	
+	//타입
+	public List<MusicVO> MusicTypeData(int page, int cno)
 	{
 		List<MusicVO> list = new ArrayList<MusicVO>();
 		
@@ -81,8 +142,8 @@ public class MusicDAO {
 		}
 		return list;
 	}
-	//총페이지
-	public int musicTotalPage(int cno)
+	//타입별
+	public int musicTypeTotalPage(int cno)
 	{
 		int total=0;
 		try {
@@ -172,5 +233,64 @@ HIT	NUMBER
 			disConnection();
 		}
 		return vo;
+	}
+	public List<MusicVO> musicFindData(String col, String find, int page)
+	{
+		List<MusicVO> list = new ArrayList<MusicVO>();
+		try {
+			getConnection();
+			int pageSize = 20;
+			int start = (pageSize*page)-(pageSize-1);
+			int end = (pageSize*page);
+			String sql = "SELECT mno,title,poster,num "
+					+ "FROM (SELECT mno,title,poster,rownum AS num "
+					+ "FROM (SELECT mno,title,poster "
+					+ "FROM genie_music "
+					+ "WHERE "+col+" LIKE '%'||?||'%')) "
+					+ "WHERE num BETWEEN ? AND ?";
+			ps= conn.prepareStatement(sql);
+			ps.setString(1, find);
+			ps.setInt(2, start);
+			ps.setInt(3, end);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				MusicVO vo = new MusicVO();
+				vo.setMno(rs.getInt(1));
+				vo.setTitle(rs.getString(2));
+				vo.setPoster(rs.getString(3));
+				list.add(vo);
+			}
+			rs.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally
+		{
+			disConnection();
+		}
+		return list;
+	}
+	public int musicFindTotalPage(String col, String find)
+	{
+		int total=0;
+		try {
+			getConnection();
+			String sql = "SELECT CEIL(COUNT(*)/20.0) FROM genie_music "
+					+ "WHERE "+col+" LIKE '%'||?||'%'";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, find);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			total=rs.getInt(1);
+			rs.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally
+		{
+			disConnection();
+		}
+		return total;
 	}
 }
