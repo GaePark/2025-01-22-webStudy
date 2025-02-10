@@ -285,7 +285,7 @@ public class FoodDAO {
 					+ "FROM (SELECT/*+INDEX_ASC(food_menupan fm_fno_pk) */ fno,name,poster,address,type "
 					+ "FROM food_menupan "
 					+ "WHERE "+col+" LIKE '%'||?||'%')) "
-					+ "WHERE ? AND ?";
+					+ "WHERE num BETWEEN ? AND ?";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, fd);
 			ps.setInt(2, start);
@@ -319,7 +319,7 @@ public class FoodDAO {
 			String sql = "SELECT CEIL(COUNT(*)/20.0) FROM food_menupan "
 					+ "WHERE "+col+" LIKE '%'||?||'%'";
 			ps=conn.prepareStatement(sql);
-			ps.setString(1, col);
+			ps.setString(1, fd);
 			ResultSet rs = ps.executeQuery();
 			rs.next();
 			total=rs.getInt(1);
@@ -382,6 +382,34 @@ public class FoodDAO {
 			disConnection();
 		}
 		return vo;
-				
+	}
+	public List<FoodVO> foodHitTop10()
+	{
+		List<FoodVO> list = new ArrayList<FoodVO>();
+		try {
+			getConnection();
+			String sql = "SELECT fno,name,poster,hit,num "
+					+ "FROM (SELECT fno,name,poster,hit,rownum AS num "
+					+ "FROM food_menupan ORDER BY hit desc) "
+					+ "WHERE rownum<=10";
+			ps= conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				FoodVO vo = new FoodVO();
+				vo.setFno(rs.getInt(1));
+				vo.setName(rs.getString(2));
+				vo.setPoster("https://www.menupan.com"+rs.getString(3));
+				vo.setHit(rs.getInt(4));
+				list.add(vo);
+			}
+			rs.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally
+		{
+			disConnection();
+		}
+		return list;
 	}
 }

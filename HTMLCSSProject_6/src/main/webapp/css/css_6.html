@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+*{
+	margin: 0;
+	padding: 0;
+}
+ul li{
+	list-style: none;
+}
+.container {
+	width: 900px;
+	height: 700px;
+	border: 2px solid red;
+	margin: 0 auto;
+}
+.header {
+width: 900px;
+height: 100px;
+background: cyan;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+}
+.nav {
+width:900px;
+height: 100px;
+background: yellow;
+}
+
+.section{
+	width: 900px;
+	height: 400px;
+	background: pink;
+}
+.footer{
+width: 900px;
+height: 100px;
+background: green
+}
+
+ul {
+	padding: 0 20px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	background: #800000;
+	color: white;
+	height: 50px;
+	line-height: 50px;
+}	
+
+ul {
+	border-radius: 10px;
+}
+ul li:nth-child(odd){
+background: #800000;
+}
+ul li:nth-child(even){
+	background: #773000;
+}
+ul li:hover {
+	font-weight: bold;
+	cursor: pointer;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<div class="logo">LOGO</div>
+			<div class="search">
+				<input type=text id="keyword">
+				<input type=button id=btn value="검색">
+			</div>
+		</div>
+		<div class="nav">
+			<ul>
+				<li>홈</li>
+				<li>회원가입</li>
+				<li>맛집</li>
+				<li>레시피</li>
+				<li>서울여행</li>
+				<li>제주여행</li>
+				<li>추천</li>
+				<li>커뮤니티</li>
+				<li>마이페이지</li>
+			</ul>
+		</div>
+		<div class="section"></div>
+		<div class="footer"></div>
+	</div>
+</body>
+</html>

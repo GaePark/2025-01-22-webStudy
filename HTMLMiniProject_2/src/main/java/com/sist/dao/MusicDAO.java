@@ -339,4 +339,33 @@ HIT	NUMBER
 		}
 		return vo;
 	}
+	public List<MusicVO> musicTop10()
+	{
+		List<MusicVO> list = new ArrayList<MusicVO>();
+		try {
+			getConnection();
+			String sql = "SELECT mno,title,poster,hit,num "
+					+ "FROM (SELECT mno,title,poster,hit,rownum AS num "
+					+ "FROM genie_music ORDER BY hit desc) "
+					+ "WHERE rownum<=10";
+			ps= conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				MusicVO vo = new MusicVO();
+				vo.setMno(rs.getInt(1));
+				vo.setTitle(rs.getString(2));
+				vo.setPoster(rs.getString(3));
+				vo.setHit(rs.getInt(4));
+				list.add(vo);
+			}
+			rs.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally
+		{
+			disConnection();
+		}
+		return list;
+	}
 }
