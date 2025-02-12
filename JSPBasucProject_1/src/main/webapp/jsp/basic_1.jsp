@@ -47,12 +47,76 @@
    							          VO => {변수:값....}
    							          let sawon={}
    							          List => [] => Array
+   							          -------------------- java에서 변환후
+   							          						=> Ajax / Vue
+   							          2) 라이브러리 읽기 : import
+   							          3) 한글 변환 : pageEncoding
+   							          4) 에러페이지 : errorPage
+   							   taglib : 자바 / HTML을 분리한 경우에 주로 사용
+   							   			JSTL / EL
+   							   include
    						2. 자바 코딩 방법
+   						----------------------------------------------------------------
+   						<% %> : 스크립트릿
+   								일반 자바 (메소드 안에 코딩되는 자바)
+   								메소드 호출 / 지역변수 선언 / 연산자 처리
+   						<%= %> : 표현식 => out.println()
+   								 데이터 출력
+   						----------------------------------------------------------------_jspService안에 첨부
+   						<%! %> : 선언식 : 전역변수 , 메소드 선언시에 사용
+   						*** 이 영역에ㅓ는 자바문법을 따라간다
+   						<% %>
+   						<%! %>
+   						------------문장이 끝나면 ;을 사용
+   						<%= %>
+   						----------- 문장이 끝나면 ;을 사용하지 않는다
+   						out.println(=== 여기 코딩);
+   						------------------ HTML외의 자바를 코딩하는 영역
    						3. 지원하는 라이브러리 (내장 객체)
-   						4. Cookie / Session
+   						 	_jspService(final jakarta.servlet.http.HttpServletRequest request, 
+   						 	final jakarta.servlet.http.HttpServletResponse response)
+   						  	final jakarta.servlet.jsp.PageContext pageContext;
+    						jakarta.servlet.http.HttpSession session = null;
+   						 	final jakarta.servlet.ServletContext application;
+    						final jakarta.servlet.ServletConfig config;
+    						jakarta.servlet.jsp.JspWriter out = null;
+    						final java.lang.Object page = this;
+   						 --------------------------------------------------------
+   						 		JSP코딩 => 첨부 => 파일
+   						 		=> 톰캣에 의해 자동 첨부
+   						 		-------------------------
+   							request / response / session / out
+   							application / pageContext
+   										  -----------웹 흐름
+   										  include / forward
+   										    ㅣ         ㅣ
+   										   ----------------핵심기술
+   								화면 이동
+   								---------
+   									sendRedirect() => request를 초기화
+   									forward() => request를 기억 (초기화가 안된다)
+   									----------- MVC
+   							config / exception / page
+   							-------------------------------9개 사용이 가능
+   							미리 객체를 생성한 다음에 필요시마다 사용이 가능하게 만든 객체
+   						4. Cookie / Session : 일부 정보를 기억 (메모리 공간)
+   									=> 서버
+   						   =>브라우저
    						5. JSP 액션태그
+   							<jsp:include> : JSP 특정 영역에 다른 JSP를 포함
+   								=> RequestDispatcher
+   							<jsp:useBean> : 클래스 메모리 할당
+   								<jsp:useBean id="dao" class="BoardDAO">
+   								=> BoardDAO dao = new BoardDAO()
+   							<jsp:setProperty> : 멤버변수에 값을 채우는 경우
+   							<jsp:param> : 다른 JSP로 값을 전송시에 사용
+   							
+   							=> 자바 + HTML이 혼합
+   								=> 최대한으로 자바소스를 줄여서 사용 => 태그형
    						6. JSTL / EL
    						7. MVC => MV => MVC
+   						*** <% %> 부분을 전체 없게 만든다
+   						    -----------------------------
    						
    						=> JSP 브라우저에서 실행
    						       -----------------

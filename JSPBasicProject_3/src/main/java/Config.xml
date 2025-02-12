@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases> <!-- VO등록 -->
+		<typeAlias type="com.sist.mybatis.EmpVO" alias="EmpVO" />
+	</typeAliases>
+	<!-- 오라클 환경설정 getConnection / disConnection -->
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" /><!-- Commit / Rollback -->
+			<dataSource type="POOLED"><!-- DBCP: 최대한 connection 8개 / 현재 사용 8개 -->
+				<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+				<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+				<property name="username" value="hr"/>
+				<property name="password" value="happy"/>
+			</dataSource>
+		</environment>
+	</environments>
+	<!-- SQL문장 첨부 -->
+	<mappers>
+		<mapper resource="com/sist/mybatis/emp-mapper.xml"/>
+	</mappers>
+</configuration>
