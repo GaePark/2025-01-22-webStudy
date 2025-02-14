@@ -3,6 +3,8 @@
 <%
 	String jsp="home.jsp";
 
+/* 	RequestDispatcher rd= request.getRequestDispatcher("home.jsp");
+	rd.include(request,response); */
 %>
 <!DOCTYPE html>
 <html>
