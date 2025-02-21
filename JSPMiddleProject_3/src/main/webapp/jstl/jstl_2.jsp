@@ -1,0 +1,30 @@
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h3>출력 형식</h3>
+	<%
+		List<String> names= new ArrayList<String>();
+	for(char c='a';c<='z';c++)
+	{
+		names.add(String.valueOf(c));
+	}
+	%>
+	<c:set var="names" value="<%=names %>"/>
+	<c:forEach var="alpha" items="${names }">
+		${alpha }&nbsp;
+	</c:forEach>
+	<br>
+		<c:forEach var="alpha" items="${names }">
+		<c:out value="${alpha }"/>&nbsp;
+	</c:forEach>
+</body>
+</html>

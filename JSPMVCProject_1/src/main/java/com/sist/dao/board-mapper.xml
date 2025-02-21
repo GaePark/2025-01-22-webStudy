@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.dao.board-mapper.xml">
+<!-- 반복 제거 -->
+<sql id="where-no">
+	WHERE no=#{no}
+</sql>
+<!-- 목록 -->
+ <select id="boardListData" resultType="BoardVO" parameterType="hashmap" >
+	SELECT no,name,subject,hit,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,num
+	FROM (SELECT no,name,subject,hit,regdate,rownum as num
+	FROM (SELECT no,name,subject,hit,regdate
+	FROM board ORDER BY no DESC))
+	WHERE num BETWEEN #{start} AND #{end}
+ </select>
+ <!-- myBatis는 한개의 태그에 한개의 SQL문만 지정해야된다 -->
+ <!-- 총페이지 -->
+ <select id="boardTotalPage" resultType="int">
+ SELECT CEIL(COUNT(*)/10.0) FROM board
+ </select>
+ <!-- 글쓰기 -->
+ <insert id="boardInsert" parameterType="BoardVO">
+ <selectKey keyProperty="no" resultType="int" order="BEFORE">
+ SELECT NVL(Max(no)+1,1) as no FROM board
+ </selectKey>
+ INSERT INTO board
+ VALUES(#{no},#{name},#{subject},#{content},#{pwd},SYSDATE,0)
+ </insert>
+ <!-- 조회수 증가 -->
+ <update id="hitIncrement" parameterType="int">
+ 	UPDATE board SET
+ 	hit=hit+1
+ 	<include refid="where-no"/>
+ </update>
+ <!-- 상세보기 -->
+ <select id="boardDetailData" resultType="BoardVO" parameterType="int">
+ 	SELECT *
+ 	FROM board
+ 	<include refid="where-no"/>
+ </select>
+ <!-- 비밀번호 읽기 -->
+ <select id="boardGetPassword" resultType="string" parameterType="int">
+ SELECT pwd FROM board WHERE no=#{no}
+ </select>
+ <!-- 수정하기 -->
+ <update id="boardUpdate" parameterType="BoardVO">
+ 	UPDATE board SET
+ 	name=#{name},subject=#{subject},content=#{content}
+ 	<include refid="where-no"/>
+ </update>
+ <!-- 삭제하기 -->
+ <delete id="boardDelete" parameterType="int">
+ 	DELETE FROM board
+ 	<include refid="where-no"/>
+ </delete>
+ 
+ <!-- 
+ 		SQL 문장
+ 		= resultType / parameterType
+ 				리턴형        매개변수
+ 	  =   ?대신    #{컬럼명}
+ 	  ${} #{}
+  -->
+</mapper>
