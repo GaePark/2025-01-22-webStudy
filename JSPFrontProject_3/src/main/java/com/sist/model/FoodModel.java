@@ -81,7 +81,7 @@ public class FoodModel {
 		FoodVO vo = FoodDAO.foodFindDetailData(Integer.parseInt(fno));
 		JSONObject obj = new JSONObject();
 		obj.put("fno", vo.getFno());
-		obj.put("name", "https://www.menupan.com"+vo.getPoster());
+		obj.put("poster", "https://www.menupan.com"+vo.getPoster());
 		obj.put("name", vo.getName());
 		obj.put("score", vo.getScore());
 		obj.put("address", vo.getAddress());
