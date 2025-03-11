@@ -47,7 +47,9 @@
                     <div class="single-post wow fadeInUp" data-wow-delay="0.1s">
                         <!-- Post Thumb -->
                         <div class="post-thumb">
+                        	<a href="../food/food_detail_before.do?fno=${vo.fno }">
                             <img src="https://www.menupan.com${vo.poster }" alt="">
+                        	</a>
                         </div>
                         <!-- Post Content -->
                         <div class="post-content">
@@ -78,7 +80,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="../food/food_detail_before.do?fno=${vo.fno }">
                                 <h4 class="post-headline">${vo.name}</h4>
                             </a>
                         </div>
